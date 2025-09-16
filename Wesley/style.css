@@ -34,3 +34,12 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#submit {
+    margin-top: 30px;
+    height: 30px;
+}
+
+#heading-login {
+    color: white;
+}

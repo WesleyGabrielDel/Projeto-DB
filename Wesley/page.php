@@ -14,10 +14,10 @@
 <body>
     <section id="form-container">
         <form id="form-login">
-            <h2>Login</h2>
+            <h2 id="heading-login">- Login -</h2>
             <input type="text" id="email"  class="data-input" placeholder="Email">
             <input type="password" id="password" class="data-input" placeholder="Senha">
-            <input type="text" id="submit" class="data-input">
+            <button id="submit" class="data-input">Submit</button>
         </form>
     </section>
 </body>
