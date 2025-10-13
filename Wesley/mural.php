@@ -56,11 +56,9 @@ if (isset($_POST['cadastra'])) {
 <body>
     <div id="main">
         <div id="geral">
-            <div id="header">
-                <h1 id="heading">Mural de pedidos</h1>
-            </div>
 
             <div id="formulario_mural">
+                <h1 class="heading">Mural de pedidos</h1>
                 <form id="mural" method="post">
                     <p class="input_label">Nome:</p>
                     <input type="text" name="nome" class="inputs" id="nome"/><br/>
@@ -71,7 +69,7 @@ if (isset($_POST['cadastra'])) {
                     <input type="submit" value="Publicar no Mural" name="cadastra" class="btn" id="send_btn"/>
                 </form>
             </div>
-
+            <h1 class="heading">Pedidos</h1>
             <?php
             $seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
             while ($res = mysqli_fetch_assoc($seleciona)) {
@@ -89,31 +87,35 @@ if (isset($_POST['cadastra'])) {
     </div>
 </body>
 <style>
-    *{
+    * {
         font-family: sans-serif;
     }
+
     body {
         margin: 0;
         padding: 0;
         display:flex;
         flex-direction: column;
         align-items: center; 
-        justify-content: center; 
+        justify-content: center;
         height: 100vh;
         background-image: linear-gradient(#12C2E9, #F64F59);
     }
     #main {
         width: 800px;
-        height: 500px;
+        height: 600px;
+        margin-top:100px;
         display:flex;
         flex-direction: column;
         align-items: center;
     }
+
     .inputs {
         border: 1px solid #ffff;
         border-radius: 7px;
     }
     #nome, #email {
+        width: 300px;
         height: 40px;
     }
     #msg {
@@ -124,14 +126,19 @@ if (isset($_POST['cadastra'])) {
     #send_btn {
         height: 60px;
         width: 200px;
-        margin-bottom:30px;
+        margin-bottom: 50px;
         border-radius: 5px;
+        border: none;
     }
     .input_label {
         color: #ffff;
     }
-    #heading {
+    .heading {
         color: #ffff;
+    }
+
+    li {
+        color: white;
     }
 </style>
 </html>
