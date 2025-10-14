@@ -69,7 +69,10 @@ if (isset($_POST['cadastra'])) {
                     <input type="submit" value="Publicar no Mural" name="cadastra" class="btn" id="send_btn"/>
                 </form>
             </div>
-            <h1 class="heading">Pedidos</h1>
+
+            <div id="heading-pedidos">
+                <h1 class="pedidos">Pedidos</h1>
+            </div>
             <?php
             $seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
             while ($res = mysqli_fetch_assoc($seleciona)) {
@@ -97,10 +100,10 @@ if (isset($_POST['cadastra'])) {
         display:flex;
         flex-direction: column;
         align-items: center; 
-        justify-content: center;
-        height: 100vh;
-        background-image: linear-gradient(#12C2E9, #F64F59);
+        height: 200vh;
+        background-image: linear-gradient(black, gray);
     }
+    
     #main {
         width: 800px;
         height: 600px;
@@ -140,5 +143,30 @@ if (isset($_POST['cadastra'])) {
     li {
         color: white;
     }
+
+    #formulario_mural {
+        width: 500px;
+        height: 600px;
+        background-image: linear-gradient(gray, black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ul {
+        background-image: linear-gradient(gray, black);
+        border-left: 5px solid black;
+    }
+
+    #heading-pedidos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+   }
+
+   .pedidos {
+    color: white;
+   }
 </style>
 </html>

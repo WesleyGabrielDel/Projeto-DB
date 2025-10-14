@@ -36,20 +36,20 @@
 <div id="main">
 <div id="geral">
 <div id="header">
-    <h1>Mural de pedidos</h1>
+    <h1 id="heading">Mural de pedidos</h1>
 </div>
 <?php if($recado_editar): ?>
-<div id="formulario_mural">
-<form method="post">
-    <label>Nome:</label>
-    <input type="text" name="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
-    <label>Email:</label>
-    <input type="text" name="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
-    <label>Mensagem:</label>
-    <textarea name="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
-    <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
-    <input type="submit" name="atualiza" value="Modificar Recado" class="btn"/>
-</form>
+<div id="formulario">
+    <form method="post">
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
+        <label>Email:</label>
+        <input type="text" name="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
+        <label>Mensagem:</label>
+        <textarea name="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
+        <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
+        <input type="submit" name="atualiza" value="Modificar Recado" class="btn"/>
+    </form>
 </div>
 <?php endif; ?>
 <?php
@@ -74,4 +74,43 @@ if(mysqli_num_rows($seleciona) <= 0){
 </div>
 </div>
 </body>
+<style>
+
+    * {
+        font-family: sans-serif;
+    }
+
+    #heading {
+        color: white;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        display:flex;
+        flex-direction: column;
+        align-items: center; 
+        height: 200vh;
+        background-image: linear-gradient(black, gray);
+    }
+
+    ul {
+        background-image: linear-gradient(gray, black);
+        border-left: 5px solid black;
+    }
+
+    li {
+        color: white;
+    }
+
+    #formulario, #main {
+        width: 500px;
+        margin-top: 60px;
+        height: 90vh;
+        background-image: linear-gradient(gray, black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
 </html>
