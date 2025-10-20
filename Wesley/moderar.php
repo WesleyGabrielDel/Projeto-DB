@@ -1,116 +1,112 @@
 <?php
-    include "conexao.php";
-    if(isset($_POST['atualiza'])){
-        $idatualiza = intval($_POST['id']);
-        $nome       = mysqli_real_escape_string($conexao, $_POST['nome']);
-        $email      = mysqli_real_escape_string($conexao, $_POST['email']);
-        $msg        = mysqli_real_escape_string($conexao, $_POST['msg']);
-    
-        $sql = "UPDATE user SET nome='$nome', email='$email', mensagem='$msg' WHERE id=$idatualiza";
-        mysqli_query($conexao, $sql) or die("Erro ao atualizar: " . mysqli_error($conexao));
-        header("Location: moderar.php");
-        exit;
-    }
-    if(isset($_GET['acao']) && $_GET['acao'] == 'excluir'){
-        $id = intval($_GET['id']);
-        mysqli_query($conexao, "DELETE FROM user WHERE id=$id") or die("Erro ao deletar: " . mysqli_error($conexao));
-        header("Location: moderar.php");
-        exit;
-    }
-    $editar_id = isset($_GET['acao']) && $_GET['acao'] == 'editar' ? intval($_GET['id']) : 0;
-    $recado_editar = null;
-    if($editar_id){
-        $res = mysqli_query($conexao, "SELECT * FROM user WHERE id=$editar_id");
-        $recado_editar = mysqli_fetch_assoc($res);
-    }
+include "conexao.php";
+if (isset($_POST['atualiza'])) {
+    $idatualiza = intval($_POST['id']);
+    $nome       = mysqli_real_escape_string($conexao, $_POST['nome']);
+    $email      = mysqli_real_escape_string($conexao, $_POST['email']);
+    $msg        = mysqli_real_escape_string($conexao, $_POST['msg']);
+
+    $sql = "UPDATE user SET nome='$nome', email='$email', mensagem='$msg' WHERE id=$idatualiza";
+    mysqli_query($conexao, $sql) or die("Erro ao atualizar: " . mysqli_error($conexao));
+    header("Location: moderar.php");
+    exit;
+}
+if (isset($_GET['acao']) && $_GET['acao'] == 'excluir') {
+    $id = intval($_GET['id']);
+    mysqli_query($conexao, "DELETE FROM user WHERE id=$id") or die("Erro ao deletar: " . mysqli_error($conexao));
+    header("Location: moderar.php");
+    exit;
+}
+$editar_id = isset($_GET['acao']) && $_GET['acao'] == 'editar' ? intval($_GET['id']) : 0;
+$recado_editar = null;
+if ($editar_id) {
+    $res = mysqli_query($conexao, "SELECT * FROM user WHERE id=$editar_id");
+    $recado_editar = mysqli_fetch_assoc($res);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<title>Moderar pedidos</title>
-<link rel="stylesheet" href="style.css"/>
+    <meta charset="utf-8"/>
+    <title>Moderar pedidos</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div id="main">
-<div id="geral">
-<div id="header">
-    <h1 id="heading">Mural de pedidos</h1>
-</div>
-<?php if($recado_editar): ?>
-<div id="formulario">
-    <form method="post">
-        <label>Nome:</label>
-        <input type="text" name="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
-        <label>Email:</label>
-        <input type="text" name="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
-        <label>Mensagem:</label>
-        <textarea name="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
-        <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
-        <input type="submit" name="atualiza" value="Modificar Recado" class="btn"/>
-    </form>
-</div>
-<?php endif; ?>
-<?php
-$seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
-if(mysqli_num_rows($seleciona) <= 0){
-    echo "<p>Nenhum pedido no mural!</p>";
-}else{
-    while($res = mysqli_fetch_assoc($seleciona)){
-        echo '<ul class="recados">';
-        echo '<li><strong>ID:</strong> ' . $res['id'] . ' |
-              <a href="moderar.php?acao=excluir&id=' . $res['id'] . '">Remover</a> |
-              <a href="moderar.php?acao=editar&id=' . $res['id'] . '">Modificar</a></li>';
-        echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
-        echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
-        echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mensagem'])) . '</li>';
-        echo '</ul>';
-    }
-}
-?>
-<div id="footer">
-</div>
-</div>
-</div>
+    <div id="main">
+        <div id="geral">
+            <div id="header">
+                <h1 id="heading">Mural de pedidos</h1>
+            </div>
+            <?php if ($recado_editar): ?>
+                <div id="formulario">
+                    <form method="post">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
+                        <label>Email:</label>
+                        <input type="text" name="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
+                        <label>Mensagem:</label>
+                        <textarea name="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
+                        <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
+                        <input type="submit" name="atualiza" value="Modificar Recado" class="btn"/>
+                    </form>
+                </div>
+            <?php endif; ?>
+            <?php
+            $seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
+            if (mysqli_num_rows($seleciona) <= 0) {
+                echo "<p>Nenhum pedido no mural!</p>";
+            } else {
+                while ($res = mysqli_fetch_assoc($seleciona)) {
+                    echo '<ul class="recados">';
+                    echo '<li><strong>ID:</strong> ' . $res['id'] . ' |
+                          <a href="moderar.php?acao=excluir&id=' . $res['id'] . '">Remover</a> |
+                          <a href="moderar.php?acao=editar&id=' . $res['id'] . '">Modificar</a></li>';
+                    echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
+                    echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
+                    echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mensagem'])) . '</li>';
+                    echo '</ul>';
+                }
+            }
+            ?>
+            <div id="footer"></div>
+        </div>
+    </div>
 </body>
 <style>
-
     * {
         font-family: sans-serif;
     }
 
-    #heading {
-        color: white;
-    }
-    
     body {
-        margin: 0;
-        padding: 0;
-        display:flex;
-        flex-direction: column;
-        align-items: center; 
-        height: 200vh;
-        background-image: linear-gradient(black, gray);
-    }
-
-    ul {
-        background-image: linear-gradient(gray, black);
-        border-left: 5px solid black;
-    }
-
-    li {
-        color: white;
-    }
-
-    #formulario, #main {
-        width: 500px;
-        margin-top: 60px;
-        height: 90vh;
-        background-image: linear-gradient(gray, black);
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #geral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        border: 1px solid rgb(218, 217, 213);
+        border-radius: 10px;
+        width: 430px;
+        height: auto;
+        padding-bottom: 60px; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        background-color: white;
+    }
+
+    h1 {
+        border-bottom: 1px solid rgb(218, 217, 213);
+    }
+
+    ul {
+        margin-top: 30px;
+        border-top: 1px solid rgb(218, 217, 213);
+        border-bottom: 1px solid rgb(218, 217, 213);
+        width: 80%;
     }
 </style>
 </html>
