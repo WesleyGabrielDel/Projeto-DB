@@ -41,14 +41,14 @@ if ($editar_id) {
             <?php if ($recado_editar): ?>
                 <div id="formulario">
                     <form method="post">
-                        <label>Nome:</label>
-                        <input type="text" name="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
-                        <label>Email:</label>
-                        <input type="text" name="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
-                        <label>Mensagem:</label>
-                        <textarea name="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
+                        <p>Nome:</p>
+                        <input type="text" name="nome" class="inputs" id="nome" value="<?php echo htmlspecialchars($recado_editar['nome']); ?>"/><br/>
+                        <p>Email:</p>
+                        <input type="text" name="email" class="inputs" id="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
+                        <p>Mensagem:</p>
+                        <textarea name="msg" class="inputs" id="nome"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
                         <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
-                        <input type="submit" name="atualiza" value="Modificar Recado" class="btn"/>
+                        <input type="submit" name="atualiza" value="Modificar Recado" id="send_btn" class="btn"/>
                     </form>
                 </div>
             <?php endif; ?>
@@ -78,10 +78,13 @@ if ($editar_id) {
         font-family: sans-serif;
     }
 
+
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100vh;
+        background-image: linear-gradient(125deg, rgb(0, 128, 222), white, rgb(0, 128, 222));
     }
 
     #geral {
@@ -108,5 +111,31 @@ if ($editar_id) {
         border-bottom: 1px solid rgb(218, 217, 213);
         width: 80%;
     }
+
+    .inputs {
+        border: 1px solid rgb(218, 217, 213);
+        border-radius: 5px;
+    }
+
+    #nome, #email {
+        height: 40px;
+        width: 250px;
+    }
+
+    #msg {
+        height: 80px;
+    }
+
+    #send_btn {
+        height: 50px;
+        width: 250px;
+        margin-top: 35px;
+        margin-bottom: 30px;
+        background-color: rgb(70, 126, 201);
+        color: white;
+        border-radius: 5px;
+        border: 1px solid rgb(70, 126, 201);
+    }
+
 </style>
 </html>

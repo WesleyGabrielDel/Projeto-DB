@@ -62,7 +62,7 @@ if (isset($_POST['cadastra'])) {
                     <p class="input_label">Nome:</p>
                     <input type="text" name="nome" class="inputs" id="nome"/><br/>
                     <p class="input_label">Email:</p>
-                    <input type="text" name="email" class="inputs" id="email"/><br/>
+                    <input type="text" name="email" class="inputs" id="email" /><br/>
                     <p class="input_label">Mensagem:</p>
                     <textarea name="msg" class="inputs" id="msg"></textarea><br/>
                     <input type="submit" value="Publicar no Mural" name="cadastra" class="btn" id="send_btn"/>
@@ -98,7 +98,8 @@ if (isset($_POST['cadastra'])) {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
+        background-image: linear-gradient(125deg, rgb(0, 128, 222), white, rgb(0, 128, 222));
+        height: auto;
     }
 
     #formulario_mural {
@@ -110,7 +111,7 @@ if (isset($_POST['cadastra'])) {
         border-radius: 10px;
         width: 430px;
         height: 550px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
         background-color: white;
     }
 
@@ -123,7 +124,7 @@ if (isset($_POST['cadastra'])) {
         border-radius: 10px;
         width: 430px;
         height: auto;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
         padding-bottom: 60px; 
         background-color: white;
     }
