@@ -83,7 +83,12 @@ if ($editar_id) {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: linear-gradient(180deg, #f6fbff 0%, #eef6ff 50%, #ffffff 100%);
+        justify-content: center;
+        background-image: url("https://newtrade.com.br/wp-content/uploads/2015/07/Sorvetes-Blueberry.jpg");
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-position: center center; 
+        background-attachment: fixed; 
         margin: 0;
         padding: 20px;
         min-height: 100vh;
@@ -99,7 +104,7 @@ if ($editar_id) {
         width: 430px;
         height: auto;
         padding: 20px;
-        box-shadow: 0 8px 24px rgba(32, 54, 100, 0.08);
+        box-shadow: 0 24px 60px rgba(32, 54, 100, 0.08);
         background-color: #ffffff;
     }
 
