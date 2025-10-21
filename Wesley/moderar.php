@@ -46,7 +46,7 @@ if ($editar_id) {
                         <p>Email:</p>
                         <input type="text" name="email" class="inputs" id="email" value="<?php echo htmlspecialchars($recado_editar['email']); ?>"/><br/>
                         <p>Mensagem:</p>
-                        <textarea name="msg" class="inputs" id="nome"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
+                        <textarea name="msg" class="inputs" id="msg"><?php echo htmlspecialchars($recado_editar['mensagem']); ?></textarea><br/>
                         <input type="hidden" name="id" value="<?php echo $recado_editar['id']; ?>"/>
                         <input type="submit" name="atualiza" value="Modificar Recado" id="send_btn" class="btn"/>
                     </form>
@@ -59,7 +59,7 @@ if ($editar_id) {
             } else {
                 while ($res = mysqli_fetch_assoc($seleciona)) {
                     echo '<ul class="recados">';
-                    echo '<li><strong>ID:</strong> ' . $res['id'] . ' |
+                    echo '<li class="recados-top"><strong>ID:</strong> ' . $res['id'] . ' |
                           <a href="moderar.php?acao=excluir&id=' . $res['id'] . '">Remover</a> |
                           <a href="moderar.php?acao=editar&id=' . $res['id'] . '">Modificar</a></li>';
                     echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
@@ -76,15 +76,17 @@ if ($editar_id) {
 <style>
     * {
         font-family: sans-serif;
+        box-sizing: border-box;
     }
-
 
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
-        background-image: linear-gradient(125deg, rgb(0, 128, 222), white, rgb(0, 128, 222));
+        background: linear-gradient(180deg, #f6fbff 0%, #eef6ff 50%, #ffffff 100%);
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
     }
 
     #geral {
@@ -96,45 +98,97 @@ if ($editar_id) {
         border-radius: 10px;
         width: 430px;
         height: auto;
-        padding-bottom: 60px; 
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        background-color: white;
+        padding: 20px;
+        box-shadow: 0 8px 24px rgba(32, 54, 100, 0.08);
+        background-color: #ffffff;
     }
 
-    h1 {
-        border-bottom: 1px solid rgb(218, 217, 213);
+    #header {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
-    ul {
-        margin-top: 30px;
-        border-top: 1px solid rgb(218, 217, 213);
+    #heading {
+        width: 100%;
+        margin: 0 0 15px 0;
+        padding-bottom: 10px;
         border-bottom: 1px solid rgb(218, 217, 213);
-        width: 80%;
+        color: #203664;
+    }
+
+    #formulario {
+        width: 100%;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(250,250,252,0.6));
+        padding: 12px;
+        border-radius: 8px;
     }
 
     .inputs {
         border: 1px solid rgb(218, 217, 213);
-        border-radius: 5px;
+        border-radius: 6px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 12px;
+        background-color: #fbfdff;
     }
 
     #nome, #email {
-        height: 40px;
-        width: 250px;
+        height: 44px;
+        width: 100%;
     }
 
     #msg {
-        height: 80px;
+        height: 100px;
+        width: 100%;
+        resize: none;
+        overflow: auto;
     }
 
     #send_btn {
-        height: 50px;
-        width: 250px;
-        margin-top: 35px;
-        margin-bottom: 30px;
+        height: 52px;
+        width: 100%;
+        margin-top: 8px;
         background-color: rgb(70, 126, 201);
         color: white;
-        border-radius: 5px;
+        border-radius: 6px;
         border: 1px solid rgb(70, 126, 201);
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .recados {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 12px;
+        border-top: 1px solid rgb(240, 240, 242);
+        border-bottom: 1px solid rgb(240, 240, 242);
+        margin: 20px;
+        list-style: none;
+        gap: 6px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(250,250,252,0.6));
+        border-radius: 6px;
+    }
+
+    .recados-top {
+        width: 100%;
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+
+    a {
+        color: #467ecd;
+        text-decoration: none;
+        margin-left: 8px;
+    }
+
+    a:hover {
+        text-decoration: underline;
     }
 
 </style>

@@ -52,6 +52,124 @@ if (isset($_POST['cadastra'])) {
             });
         });
     </script>
+    <style>
+        * {
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(180deg, #f6fbff 0%, #eef6ff 50%, #ffffff 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        #geral {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            max-width: 980px;
+        }
+
+        #formulario_mural {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+            border: 1px solid rgb(218, 217, 213);
+            border-radius: 10px;
+            width: 430px;
+            box-shadow: 0px 8px 24px rgba(32, 54, 100, 0.08);
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        #pedidos-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+            border: 1px solid rgb(218, 217, 213);
+            border-radius: 10px;
+            width: 430px;
+            box-shadow: 0px 8px 24px rgba(32, 54, 100, 0.08);
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        #mural {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        #pedidos {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            width: 100%;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgb(218, 217, 213);
+            color: #203664;
+        }
+
+        .inputs {
+            border: 1px solid rgb(218, 217, 213);
+            border-radius: 6px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            background-color: #fbfdff;
+        }
+
+        #nome, #email {
+            height: 44px;
+        }
+
+        #msg {
+            height: 100px;
+            resize: none;
+            overflow: auto;
+        }
+
+        #send_btn {
+            height: 52px;
+            background-color: rgb(70, 126, 201);
+            color: white;
+            border-radius: 6px;
+            border: 1px solid rgb(70, 126, 201);
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .recados {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            padding: 12px;
+            border-top: 1px solid rgb(240, 240, 242);
+            border-bottom: 1px solid rgb(240, 240, 242);
+            margin: 20px;
+            list-style: none;
+            gap: 6px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(250,250,252,0.6));
+            border-radius: 6px;
+        }
+
+
+    </style>
 </head>
 <body>
     <div id="main">
@@ -68,121 +186,23 @@ if (isset($_POST['cadastra'])) {
                     <input type="submit" value="Publicar no Mural" name="cadastra" class="btn" id="send_btn"/>
                 </form>
             </div>
-                <section id="pedidos-box">
-                    <div id="heading-pedidos">
-                        <h1 id="pedidos">Pedidos</h1>
-                    </div>
-                    <?php
-                    $seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
-                    while ($res = mysqli_fetch_assoc($seleciona)) {
-                        echo '<ul class="recados">';
-                        echo '<li><strong>ID:</strong> ' . $res['id'] . '</li>';
-                        echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
-                        echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
-                        echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mensagem'])) . '</li>';
-                        echo '</ul>';
-                    }
-                    ?>
-                </section>
-            <div id="footer"></div>
+            <section id="pedidos-box">
+                <div id="heading-pedidos">
+                    <h1 id="pedidos">Pedidos</h1>
+                </div>
+                <?php
+                $seleciona = mysqli_query($conexao, "SELECT * FROM user ORDER BY id DESC");
+                while ($res = mysqli_fetch_assoc($seleciona)) {
+                    echo '<ul class="recados">';
+                    echo '<li><strong>ID:</strong> ' . $res['id'] . '</li>';
+                    echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
+                    echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
+                    echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mensagem'])) . '</li>';
+                    echo '</ul>';
+                }
+                ?>
+            </section>
         </div>
     </div>
 </body>
-<style>
-
-    * {
-        font-family: sans-serif;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-image: linear-gradient(125deg, rgb(0, 128, 222), white, rgb(0, 128, 222));
-        height: auto;
-    }
-
-    #formulario_mural {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
-        border: 1px solid rgb(218, 217, 213);
-        border-radius: 10px;
-        width: 430px;
-        height: 550px;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-        background-color: white;
-    }
-
-    #pedidos-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
-        border: 1px solid rgb(218, 217, 213);
-        border-radius: 10px;
-        width: 430px;
-        height: auto;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-        padding-bottom: 60px; 
-        background-color: white;
-    }
-
-    #mural {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        height: 400px;
-    }
-
-    #pedidos {
-        margin-top: 30px;
-        margin-bottom: 70px;
-    }
-
-    h1 {
-        border-bottom: 1px solid rgb(218, 217, 213);
-    }
-
-    #pedidos-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
-        width: 100%;
-        border-top: 1px solid rgb(218, 217, 213);
-    }
-
-    .inputs {
-        border: 1px solid rgb(218, 217, 213);
-        border-radius: 5px;
-    }
-
-    #nome, #email {
-        height: 40px;
-    }
-
-    #msg {
-        height: 80px;
-    }
-
-    #send_btn {
-        height: 50px;
-        background-color: rgb(70, 126, 201);
-        color: white;
-        border-radius: 5px;
-        border: 1px solid rgb(70, 126, 201);
-    }
-
-    ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-top: 1px solid rgb(218, 217, 213);
-        border-bottom: 1px solid rgb(218, 217, 213);
-        width: 80%;
-    }
-</style>
 </html>
