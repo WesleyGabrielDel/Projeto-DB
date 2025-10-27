@@ -143,7 +143,7 @@ if ($editar_id) {
 
     #nome, #email {
         height: 44px;
-        width: 100%;
+        width: 300px;
     }
 
     #msg {
