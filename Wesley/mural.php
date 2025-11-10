@@ -156,6 +156,11 @@ if (isset($_POST['cadastra'])) {
             cursor: pointer;
             width: 100%;
             font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #send_btn:hover {
+            box-shadow: 0 0 2px #007bff, 0 0 2px #007bff, 0 0 2px #007bff;
         }
 
         .recados {
